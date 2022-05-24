@@ -31,7 +31,8 @@ class PizzasService {
         } catch (error){
             console.log(error);
         }
-        return rowsAffected;
+        return rowsAffected
+        ;
     }
 }
 export default PizzasService;
