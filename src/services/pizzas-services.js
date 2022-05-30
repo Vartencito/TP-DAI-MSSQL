@@ -71,7 +71,6 @@ class PizzasService {
     }
     deleteById = async (id) => {
         let rowsAffected = 0;
-        console.log('Estoy en: PizzasService.getById');
         try {
             let pool    = await sql.connect(config);
             let result  = await pool.request()
