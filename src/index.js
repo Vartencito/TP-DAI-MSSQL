@@ -1,3 +1,5 @@
+import PizzaServices  from './services/pizzas-services.js';
+
 import config from './dbconfig';
 import sql from 'mssql';
 
@@ -6,4 +8,10 @@ let result  = await pool.request().query("SELECT top 2 * from Pizzas");
 
 console.log(result.recordsets[0]);
 
+
+
 process.exit();
+
+
+let srv = new PizzaServices  ();
+srv.getAll()
