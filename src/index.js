@@ -1,17 +1,12 @@
 import PizzaServices  from './services/pizzas-services.js';
-
 import config from './dbconfig';
 import sql from 'mssql';
+import express from 'express'
 
-let pool    = await sql.connect(config);
-let result  = await pool.request().query("SELECT top 2 * from Pizzas");
+const app = express();
 
-console.log(result.recordsets[0]);
-
-
+app.use(cors());
+app.use(express.json());
 
 process.exit();
 
-
-let srv = new PizzaServices  ();
-srv.getAll()

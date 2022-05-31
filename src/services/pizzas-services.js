@@ -15,7 +15,6 @@ class PizzasService {
             console.log(error);
         }
         return returnEntity;
-
     }
     getById = async (id) =>{
         let returnEntity = null;
@@ -40,9 +39,9 @@ class PizzasService {
                                     .input ('pGluten', sql.Bit, pizza.libreGluten)
                                     .input ('pImporte', sql.Float, pizza.importe)
                                     .input ('pDescripcion', sql.VarChar, pizza.descripcion)
-                                    .query ('INSERT into (Nombre, LibreGluten, Importe, Descripcion) VALUES (@pNombre, @pGluten, @pImporte, @pDescripcion )');
+                                    .query (`INSERT into (Nombre, LibreGluten, Importe, Descripcion)
+                                     VALUES (@pNombre, @pGluten, @pImporte, @pDescripcion )`);
                 returnEntity = result.recordsets;
-    
             }
             catch(error){
                 console.log(error);
@@ -51,7 +50,6 @@ class PizzasService {
     }
     update = async (pizza) => {
         let returnEntity = null;
-
         try{
 
             let pool    = await sql.connect(config);
