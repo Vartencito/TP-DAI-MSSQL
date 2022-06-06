@@ -1,12 +1,14 @@
-import config from './dbconfig';
+import config from '../dbconfig.js';
 import sql from 'mssql';
 
 class PizzasService {
     getAll = async () => {
         let returnEntity = null;
+        console.log('estoy en el service 1');
         try {
             let pool    = await sql.connect(config);
-            let result  = await pool.request()
+            console.log('estoy en el service 2');
+            const result  = await pool.request()
                                 .query ('SELECT * FROM Pizzas');
             returnEntity = result.recordsets;
 
@@ -35,7 +37,7 @@ class PizzasService {
             try {
                 let pool    = await sql.connect(config);
                 let result  = await pool.request()
-                                    .input ('pNombre', sql.VarChar, pizza.nombre)
+                                    .input ('pNombre', sql.VarChar(50), pizza.nombre)
                                     .input ('pGluten', sql.Bit, pizza.libreGluten)
                                     .input ('pImporte', sql.Float, pizza.importe)
                                     .input ('pDescripcion', sql.VarChar, pizza.descripcion)
@@ -51,11 +53,9 @@ class PizzasService {
     update = async (pizza) => {
         let returnEntity = null;
         try{
-
             let pool    = await sql.connect(config);
             let result  = await pool.request()
-                                    .input('pId', sql.Int, pizza.id)
-                                    .input ('pNombre', sql.VarChar, pizza.nombre)
+                                    .input ('pNombre', sql.VarChar(50), pizza.nombre)
                                     .input ('pGluten', sql.Bit, pizza.libreGluten)
                                     .input ('pImporte', sql.Float, pizza.importe)
                                     .input ('pDescripcion', sql.VarChar, pizza.descripcion)
