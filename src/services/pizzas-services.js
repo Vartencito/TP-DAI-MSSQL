@@ -6,7 +6,8 @@ class PizzasService {
         let returnEntity = null;
         console.log('estoy en el service 1');
         try {
-            let pool    = await sql.connect(config);
+            console.dir(config);
+            let pool = await sql.connect(config);
             console.log('estoy en el service 2');
             const result  = await pool.request()
                                 .query ('SELECT * FROM Pizzas');

@@ -7,11 +7,15 @@ const port = 5000;
 
 app.set('port', port);
 
+app.listen(app.get('port'));
+
+console.log("servidor en el puerto", app.get('port'));
+
 app.use(cors());
 
 app.use(express.json());
 
-app.use(pizzasController);
+app.use("/api/pizzas", pizzasController);
 
 export default app;
 
